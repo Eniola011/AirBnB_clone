@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-"""
-Parent Class: Base Model
-"""
-from datetime import datetime
+"""Parent Class: Base Model"""
 import uuid
+from datetime import datetime
 
 
 class BaseModel():
@@ -11,10 +9,21 @@ class BaseModel():
 
     def __init__(self, *arg, **kwargs):
         """ Initialization of BaseModel """
-        if not kwargs:
+        if kwargs and kwargs is not None:
+            for key in kwargs:
+                time_format = "%Y-%m-%dT%H:%M:%S.%f"
+                if key == "created_at":
+                    self.__dict__["created_at"] = datetime.\
+                        strptime(kwargs["created_at"], time_format)
+                elif key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.\
+                        strptime(kwargs["updated_at"], time_format)
+                else:
+                    self.__dict__[key] = kwargs[key]
+        else:
             self.id = str(uuid.uuid(4))
             self.created_at = datetime.now()
-            self.updated_at = self.created_at
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """ Prints representation of a class """
