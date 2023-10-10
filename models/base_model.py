@@ -1,14 +1,24 @@
 #!/usr/bin/python3
-"""Parent Class: Base Model"""
+"""
+
+Parent Class: Base Model
+
+"""
+
+
 import uuid
 from datetime import datetime
 
 
 class BaseModel():
-    """ Parent Class to Inherit From """
+    """Parent Class to
+    Inherit From
+    """
 
     def __init__(self, *arg, **kwargs):
-        """ Initialization of BaseModel """
+        """Initialization of
+        BaseModel
+        """
         if kwargs and kwargs is not None:
             for key in kwargs:
                 time_format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -26,7 +36,9 @@ class BaseModel():
             self.updated_at = datetime.now()
 
     def __str__(self):
-        """ Prints representation of a class """
+        """Prints representation
+        of a class
+        """
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
