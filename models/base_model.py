@@ -26,6 +26,7 @@ class BaseModel():
             self.id = str(uuid.uuid(4))
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new()
 
     def __str__(self):
         """Prints representation of a class"""
