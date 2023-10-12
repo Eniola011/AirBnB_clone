@@ -37,6 +37,35 @@ class HBNBCommand(cmd.Cmd):
         elif len(argmt) == 1:
             print("** instance id missing **")
         else:
+            obj = storage.all()
+            for key, value in obj.items():
+                objName = value.__class__.__name__
+                objId = value.id
+                if objName == argmt[0] and objId == argmt[1].strip('"'):
+                    print(value)
+                    return
+            print("** no instance found **")
+
+    def do_destroy(self, argmt):
+        """Deletes an instance based on the class name and id"""
+        if not argmt:
+            print("** class name missing **")
+
+        argmt = argmt.split(' ')
+        if argmt[0] not in HBNBCommand.cmdClass:
+            print("** class doesn't exist **")
+        elif len(argmt) == 1:
+            print("** instance id missing **")
+        else:
+            obj = storage.all()
+            for key, value in obj.items():
+                objName = value.__class__.__name__
+                objId = value.id
+                if objName == argmt[0] and objId == argmt[1].strip('"'):
+                    del value
+                    del storage._FileStorage__objects[key]
+                    storage.save()
+                    return
             print("** no instance found **")
 
     def do_quit(self, line):
