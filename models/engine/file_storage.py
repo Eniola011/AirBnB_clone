@@ -33,6 +33,7 @@ class FileStorage():
         """deserializes the JSON file to __objects"""
         from models.base_model import BaseModel
         from models.user import User
+        from models.state import State
 
         dicty = {'BaseModel': BaseModel, 'User': User}
         if os.path.exists(FileStorage.__file_path) is True:
