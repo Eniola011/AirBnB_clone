@@ -15,6 +15,7 @@ class HBNBCommand(cmd.Cmd):
     cmdClass = ["BaseModel"]
 
     def emptyline(self):
+        """an empty line + ENTER shouldn’t execute anything"""
         pass
 
     def do_create(self, MyModel):
