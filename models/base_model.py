@@ -11,22 +11,18 @@ class BaseModel():
 
     def __init__(self, *arg, **kwargs):
         """Initialization of BaseModel"""
-        if kwargs and kwargs is not None:
-            for key in kwargs:
-                time_format = "%Y-%m-%dT%H:%M:%S.%f"
-                if key == "created_at":
-                    self.__dict__["created_at"] = datetime.\
-                        strptime(kwargs["created_at"], time_format)
-                elif key == "updated_at":
-                    self.__dict__["updated_at"] = datetime.\
-                        strptime(kwargs["updated_at"], time_format)
-                else:
-                    self.__dict__[key] = kwargs[key]
-        else:
+        if not kwargs:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             storage.new(self)
+        else:
+            time_format = "%Y-%m-%dT%H:%M:%S.%f"
+            for key, value in kwargs.items():
+                if key == 'created_at' or key == 'updated_at':
+                    value = datetime.strptime(kwargs[key], time_format)
+                if key != '__class__':
+                    setattr(self, key, value)
 
     def __str__(self):
         """Prints representation of a class"""
