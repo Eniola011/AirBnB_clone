@@ -29,7 +29,7 @@ class FileStorage():
                      value in FileStorage.__objects.items()}
             json.dump(dicty, fd)
 
-    def reload():
+    def reload(self):
         """deserializes the JSON file to __objects"""
         from models.base_model import BaseModel
         dicty = {'BaseModel': BaseModel}
