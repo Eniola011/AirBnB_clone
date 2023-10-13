@@ -102,18 +102,18 @@ class HBNBCommand(cmd.Cmd):
             return
         arg = ""
         for i in argmt.split(','):
-            arg += i
+            arg = arg + i
         argmts = shlex.split(arg)
 
         if argmts[0] not in HBNBCommand.cmdClass:
             print("** class doesn't exist **")
-        elif len(argmt) == 1:
+        elif len(argmts) == 1:
             print("** instance id missing **")
         else:
             obj = storage.all()
-            for key, value in obj.items():
-                objName = value.__class__.__name__
-                objId = value.id
+            for key, val in obj.items():
+                objName = val.__class__.__name__
+                objId = val.id
                 if objName == argmt[0] and objId == argmt[1].strip('"'):
                     if len(argmts) == 2:
                         print("** attribute name missing **")
