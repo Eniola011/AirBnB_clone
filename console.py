@@ -12,7 +12,7 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
-    cmdClass = ['BaseModel', 'User']
+    cmdClass = ['BaseModel', 'User', 'State']
 
     def emptyline(self):
         """an empty line + ENTER shouldn’t execute anything"""
