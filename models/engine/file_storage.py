@@ -34,7 +34,7 @@ class FileStorage():
         from models.base_model import BaseModel
         from models.user import User
 
-        dicty = {'BaseModel': BaseModel}
+        dicty = {'BaseModel': BaseModel, 'User': User}
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as fd:
                 for key, value in json.load(fd).items():
