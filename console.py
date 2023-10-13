@@ -24,6 +24,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif MyModel not in HBNBCommand.cmdClass:
             print("** class doesn't exist **")
+        else:
+            dictList = {'BaseModel': BaseModel}
+            model = dictList[MyModel]()
+            print(model.id)
+            model.save()
 
     def do_show(self, argmt):
         """Prints the string representation of
