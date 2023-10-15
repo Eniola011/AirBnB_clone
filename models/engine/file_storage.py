@@ -38,8 +38,6 @@ class FileStorage():
         from models.amenity import Amenity
         from models.place import Place
         from models.review import Review
-
-
         dicty = {'BaseModel': BaseModel, 'User': User}
         if os.path.exists(FileStorage.__file_path) is True:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as fd:
