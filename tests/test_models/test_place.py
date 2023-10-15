@@ -30,7 +30,7 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(self.playce, 'city_id'))
         self.assertTrue(hasattr(self.playce, 'user_id'))
         self.assertTrue(hasattr(self.playce, 'name'))
-		self.assertTrue(hasattr(self.playce, 'description'))
+        self.assertTrue(hasattr(self.playce, 'description'))
         self.assertTrue(hasattr(self.playce, 'number_rooms'))
         self.assertTrue(hasattr(self.playce, 'number_bathrooms'))
         self.assertTrue(hasattr(self.playce, 'max_guest'))
@@ -45,6 +45,16 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(self.playce.id, str)
         self.assertIsInstance(self.playce.created_at, datetime.datetime)
         self.assertIsInstance(self.playce.updated_at, datetime.datetime)
+        self.assertIsInstance(self.playce.city_id, str)
+        self.assertIsInstance(self.playce.user_id, str)
+        self.assertIsInstance(self.playce.description, str)
+        self.assertIsInstance(self.playce.number_rooms, int)
+        self.assertIsInstance(self.playce.number_bathrooms, int)
+        self.assertIsInstance(self.playce.max_guest, int)
+        self.assertIsInstance(self.playce.price_by_night, int)
+        self.assertIsInstance(self.playce.latitude, float)
+        self.assertIsInstance(self.playce.longitude, float)
+        self.assertIsInstance(self.playce.amenity_ids, list)
 
 
 if __name__ == '__main__':
