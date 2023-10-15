@@ -12,7 +12,7 @@ class TestState(unittest.TestCase):
 
     stat = State()
 
-    def testClass(self):
+    def testSubClass(self):
         """tests subclass"""
         self.assertEqual(str(type(self.stat)), "<class 'models.state.State'>")
 
@@ -21,14 +21,14 @@ class TestState(unittest.TestCase):
         self.assertIsInstance(self.stat, State)
 
     def testHasAttr(self):
-        """test for user class attributes"""
+        """test for state class attributes"""
         self.assertTrue(hasattr(self.stat, 'name'))
         self.assertTrue(hasattr(self.stat, 'id'))
         self.assertTrue(hasattr(self.stat, 'created_at'))
         self.assertTrue(hasattr(self.stat, 'updated_at'))
 
-    def test_types(self):
-        """test the type of attribute in user subclass"""
+    def testIsinstance(self):
+        """test the type of attribute in state subclass"""
         self.assertIsInstance(self.stat.name, str)
         self.assertIsInstance(self.stat.id, str)
         self.assertIsInstance(self.stat.created_at, datetime.datetime)

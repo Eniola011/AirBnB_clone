@@ -22,7 +22,7 @@ class TestPlace(unittest.TestCase):
         self.assertIsInstance(self.playce, Place)
 
     def testHasAttr(self):
-        """test for user class attributes"""
+        """test for place class attributes"""
         self.assertTrue(hasattr(self.playce, 'name'))
         self.assertTrue(hasattr(self.playce, 'id'))
         self.assertTrue(hasattr(self.playce, 'created_at'))
@@ -39,7 +39,7 @@ class TestPlace(unittest.TestCase):
         self.assertTrue(hasattr(self.playce, 'longitude'))
         self.assertTrue(hasattr(self.playce, 'amenity_ids'))
 
-    def test_types(self):
+    def testIsinstance(self):
         """test the type of attribute in place subclass"""
         self.assertIsInstance(self.playce.name, str)
         self.assertIsInstance(self.playce.id, str)

@@ -13,7 +13,7 @@ class TestUser(unittest.TestCase):
     """Tests for User Class"""
     usr = User()
 
-    def testClass(self):
+    def testSubClass(self):
         """test for existence of class"""
         self.assertEqual(str(type(self.usr)), "<class 'models.user.User'>")
 
@@ -31,7 +31,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.usr, 'created_at'))
         self.assertTrue(hasattr(self.usr, 'updated_at'))
 
-    def testtype(self):
+    def testIsinstance(self):
         """test the type of attribute in user subclass"""
         self.assertIsInstance(self.usr.first_name, str)
         self.assertIsInstance(self.usr.last_name, str)
