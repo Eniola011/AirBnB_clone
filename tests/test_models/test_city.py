@@ -23,21 +23,19 @@ class TestCity(unittest.TestCase):
 
     def testHasAttr(self):
         """test for city class attributes"""
-        self.assertTrue(hasattr(self.sity, 'place_id'))
+        self.assertTrue(hasattr(self.sity, 'state_id'))
         self.assertTrue(hasattr(self.sity, 'id'))
         self.assertTrue(hasattr(self.sity, 'created_at'))
         self.assertTrue(hasattr(self.sity, 'updated_at'))
-        self.assertTrue(hasattr(self.sity, 'user_id'))
-        self.assertTrue(hasattr(self.sity, 'text'))
+        self.assertTrue(hasattr(self.sity, 'name'))
 
     def testIsinstance(self):
-        """test the type of attribute in amenity subclass"""
-        self.assertIsInstance(self.sity.place_id, str)
+        """test the type of attribute in city subclass"""
+        self.assertIsInstance(self.sity.state_id, str)
         self.assertIsInstance(self.sity.id, str)
         self.assertIsInstance(self.sity.created_at, datetime.datetime)
         self.assertIsInstance(self.sity.updated_at, datetime.datetime)
-        self.assertIsInstance(self.sity.text, str)
-        self.assertIsInstance(self.sity.user_id, str)
+        self.assertIsInstance(self.sity.name, str)
 
 
 if __name__ == '__main__':
