@@ -14,7 +14,8 @@ class TestState(unittest.TestCase):
 
     def testClass(self):
         """tests subclass"""
-        self.assertEqual(str(type(self.amen)), "<class 'models.amenity.Amenity'>")
+        self.assertEqual(str(type(self.amen)),
+                         "<class 'models.amenity.Amenity'>")
 
     def testAmenityInheritance(self):
         """test if Amenity is a subclass of BaseModel"""
