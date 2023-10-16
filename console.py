@@ -12,7 +12,10 @@ import shlex
 class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
-    cmdClass = ['BaseModel', 'User', 'State']
+    classes = ['BaseModel', 'User', 'State', 'City',
+                'Amenity', 'Place', 'Review']
+
+    commands = ['create', 'show', 'update', 'all', 'destroy', 'count']
 
     def emptyline(self):
         """an empty line + ENTER shouldn’t execute anything"""
@@ -22,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel"""
         if not MyModel:
             print("** class name missing **")
-        elif MyModel not in HBNBCommand.cmdClass:
+        elif MyModel not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             dictList = {'BaseModel': BaseModel}
@@ -39,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         argmt = argmt.split(' ')
-        if argmt[0] not in HBNBCommand.cmdClass:
+        if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(argmt) == 1:
             print("** instance id missing **")
@@ -59,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
 
         argmt = argmt.split(' ')
-        if argmt[0] not in HBNBCommand.cmdClass:
+        if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(argmt) == 1:
             print("** instance id missing **")
@@ -82,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         if not argmt:
             print("** class name missing **")
         argmt = argmt.split(' ')
-        if argmt[0] not in HBNBCommand.cmdClass:
+        if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
             obj = storage.all()
@@ -105,7 +108,7 @@ class HBNBCommand(cmd.Cmd):
             arg = arg + i
         argmts = shlex.split(arg)
 
-        if argmts[0] not in HBNBCommand.cmdClass:
+        if argmts[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(argmts) == 1:
             print("** instance id missing **")
