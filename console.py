@@ -6,6 +6,12 @@ import json
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
 import shlex
 
 
@@ -13,13 +19,23 @@ class HBNBCommand(cmd.Cmd):
     """HBNBCommand"""
     prompt = "(hbnb) "
     classes = ['BaseModel', 'User', 'State', 'City',
-                'Amenity', 'Place', 'Review']
-
-    commands = ['create', 'show', 'update', 'all', 'destroy', 'count']
+               'Amenity', 'Place', 'Review']
 
     def emptyline(self):
         """an empty line + ENTER shouldn’t execute anything"""
         pass
+
+    def do_count(self, classname):
+        """retrieve the number of instances of a class:
+        <class name>.count().
+        """
+        count = 0
+        objs = storage.all()
+        for key, value in objs.items():
+            cls = key.split('.')
+            if cls[0] == classname:
+                count = count + 1
+        print(count)
 
     def do_create(self, MyModel):
         """Creates a new instance of BaseModel"""
@@ -28,7 +44,9 @@ class HBNBCommand(cmd.Cmd):
         elif MyModel not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
-            dictList = {'BaseModel': BaseModel}
+            dictList = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                        'City': City, 'Amenity': Amenity, 'State': State,
+                        'Review': Review}
             model = dictList[MyModel]()
             print(model.id)
             model.save()
