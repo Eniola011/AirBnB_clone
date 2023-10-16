@@ -27,9 +27,9 @@ class BaseModel():
     def __str__(self):
         """Prints representation of a class"""
         className = "[" + self.__class__.__name__ + "]"
-        dicty = {ke: val for (ke, val) in self.__dict__.items()
-                 if (not val) is False}
-        return className + " (" + self.id + ") " + str(dicty)
+        dic = {ke: val for (ke, val) in self.__dict__.items()
+               if (not val) is False}
+        return className + " (" + self.id + ") " + str(dic)
 
     def save(self):
         """ updates the public instance attribute updated_at
@@ -42,16 +42,16 @@ class BaseModel():
         """ returns a dictionary containing all keys/values
         of __dict__ of the instance
         """
-        dicty = {}
+        dicList = {}
 
         for key, value in self.__dict__.items():
             if key == "created_at" or key == "updated_at":
-                dicty[key] = value.strftime("%Y-%m-%dT%H:%M:%S.%f")
+                dicList[key] = value.strftime("%Y-%m-%dT%H:%M:%S.%f")
             else:
                 if not value:
                     pass
                 else:
-                    dicty[key] = value
-        dicty['__class__'] = self.__class__.__name__
+                    dicList[key] = value
+        dicList['__class__'] = self.__class__.__name__
 
-        return dicty
+        return dicList
