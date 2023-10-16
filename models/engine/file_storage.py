@@ -39,6 +39,7 @@ class FileStorage():
         from models.amenity import Amenity
         from models.place import Place
         from models.review import Review
+
         dicty = {'BaseModel': BaseModel, 'User': User, 'State': State,
                  'City': City, 'Amenity': Amenity, 'Place': Place,
                  'Review': Review}
