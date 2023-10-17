@@ -51,15 +51,15 @@ class HBNBCommand(cmd.Cmd):
             print(model.id)
             model.save()
 
-    def do_show(self, argmt):
+    def do_show(self, argmts):
         """Prints the string representation of
         an instance based on the class name and id
         """
-        if not argmt:
+        if not argmts:
             print("** class name missing **")
             return
 
-        argmt = argmt.split(' ')
+        argmt = argmts.split(' ')
         if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(argmt) == 1:
@@ -74,12 +74,12 @@ class HBNBCommand(cmd.Cmd):
                     return
             print("** no instance found **")
 
-    def do_destroy(self, argmt):
+    def do_destroy(self, argmts):
         """Deletes an instance based on the class name and id"""
-        if not argmt:
+        if not argmts:
             print("** class name missing **")
 
-        argmt = argmt.split(' ')
+        argmt = argmts.split(' ')
         if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         elif len(argmt) == 1:
@@ -96,13 +96,13 @@ class HBNBCommand(cmd.Cmd):
                     return
             print("** no instance found **")
 
-    def do_all(self, argmt):
+    def do_all(self, argmts):
         """Prints all string representation of all instances
         based or not on the class name.
         """
-        if not argmt:
+        if not argmts:
             print("** class name missing **")
-        argmt = argmt.split(' ')
+        argmt = argmts.split(' ')
         if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
         else:
@@ -114,21 +114,21 @@ class HBNBCommand(cmd.Cmd):
                     allInstance += [value.__str__()]
             print(allInstance)
 
-    def do_update(self, argmt):
+    def do_update(self, argmts):
         """Updates an instance based on the class name and id by adding
         or updating attribute (save the change into the JSON file).
         """
-        if not argmt:
+        if not argmts:
             print("** class name missing **")
             return
         arg = ""
-        for i in argmt.split(','):
-            arg = arg + i
-        argmts = shlex.split(arg)
+        for argv in argmts.split(','):
+            arg = arg + argv
+        argmt = shlex.split(arg)
 
-        if argmts[0] not in HBNBCommand.classes:
+        if argmt[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
-        elif len(argmts) == 1:
+        elif len(argmt) == 1:
             print("** instance id missing **")
         else:
             obj = storage.all()
@@ -136,12 +136,12 @@ class HBNBCommand(cmd.Cmd):
                 objName = val.__class__.__name__
                 objId = val.id
                 if objName == argmt[0] and objId == argmt[1].strip('"'):
-                    if len(argmts) == 2:
+                    if len(argmt) == 2:
                         print("** attribute name missing **")
-                    elif len(argmts) == 3:
+                    elif len(argmt) == 3:
                         print("** value missing **")
                     else:
-                        setattr(key, argmts[2], argmts[3])
+                        setattr(key, argmt[2], argmt[3])
                         storage.save()
                     return
             print("** no instance found **")
