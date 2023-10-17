@@ -30,15 +30,17 @@ class TestBaseModel(unittest.TestCase):
         """test save method in base class"""
         self.my_model.first_name = "First"
         self.my_model.save()
-        dict1 = self.my_model.to_dict()
 
         self.assertIsInstance(self.my_model.id, str)
         self.assertIsInstance(self.my_model.created_at, datetime.datetime)
         self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
 
+        dict1 = self.my_model.to_dict()
+
         self.my_model.first_name = "Second"
         self.my_model.save()
         dict2 = self.my_model.to_dict()
+
         self.assertEqual(dict1['created_at'], dict2['created_at'])
         self.assertNotEqual(dict1['updated_at'], dict2['updated_at'])
 
